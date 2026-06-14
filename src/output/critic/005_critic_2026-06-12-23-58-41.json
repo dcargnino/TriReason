@@ -1,0 +1,24 @@
+{
+  "iteration": 5,
+  "input": {
+    "data": "",
+    "objective": "scrivi una poesia in rima baciata",
+    "candidate_output": "Penombra Prima\n\nIl mondo trattiene il respiro in gola,\nla notte scivola senza rumore;\nle stelle svaniscono, una a una, sola\nla luna, smorta, perde il suo splendore.\nUn freddo lieve sfiora i vetri chiusi,\nun ramo fermo non trema nel vento;\nil cuore batte piano, come avvisi\ndi un risveglio dolce, pallido, lento.\nL\u2019ombra si assottiglia sul muro bianco,\nun filo d\u2019oro taglia l\u2019orizzonte;\nil sonno si scioglie, leggero, stanco,\nmentre la mente torna alla sua fronte.\nUn uccello schiude appena il becco aperto,\nla luce entra \u2014 e il tempo \u00e8 gi\u00e0 pi\u00f9 certo."
+  },
+  "output": {
+    "score_total": 96.5,
+    "score_breakdown": {
+      "objective_fulfillment": 100.0,
+      "correctness_faithfulness": 100.0,
+      "completeness": 90.0,
+      "format_compliance": 100.0,
+      "clarity_usability": 90.0
+    },
+    "issues": [
+      "La poesia non include un titolo esplicito che indichi l'uso della rima baciata (es. 'Rima baciata: Penombra Prima'), riducendo la trasparenza formale richiesta da un compito didattico o tecnico; il verso 'la luna, smorta, perde il suo splendore.' presenta una virgola interna che interrompe eccessivamente il flusso metrico, potenzialmente indebolendo la musicalit\u00e0 attesa dalla rima baciata"
+    ],
+    "recommendations": [
+      "Aggiungere un sottotitolo esplicativo tra parentesi dopo il titolo, ad esempio ': Rima baciata', per rendere immediatamente riconoscibile la forma metrica rispettata; sostituire la virgola dopo 'smorta' con una pausa pi\u00f9 fluida (es. 'la luna smorta perde il suo splendore') o riformulare il verso mantenendo rima e ritmo (es. 'la luna smorta cede il suo fulcro')"
+    ]
+  }
+}

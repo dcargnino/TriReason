@@ -40,7 +40,6 @@ class GeneratorOutput(BaseModel):
 class CriticOutput(BaseModel):
     score_total: float = Field(..., ge=0, le=100)
     score_breakdown: ScoreBreakdown
-    passed: bool
     issues: list[str] = Field(default_factory=list)
     recommendations: list[str] = Field(default_factory=list)
 
@@ -48,6 +47,8 @@ class CriticOutput(BaseModel):
 class RefinerOutput(BaseModel):
     refined_prompt: str
     changes_made: list[str] = Field(default_factory=list)
+    action: str = Field("continue", description="Either 'stop' or 'continue'")
+    reason: str = Field("", description="Reason for stopping or continuing")
 
 
 # ── Response models ─────────────────────────────────────────────────

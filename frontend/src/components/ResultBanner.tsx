@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Trophy, Check } from "lucide-react";
 import type { WorkflowState } from "../types/api";
 
 interface Props {
@@ -26,7 +27,7 @@ export function ResultBanner({ workflow }: Props) {
     <div className="rounded-xl border border-emerald-500/40 bg-emerald-950/20 p-5 space-y-3">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xl">{"\u{1F3C6}"}</span>
+          <Trophy className="w-5 h-5 text-emerald-400" />
           <h3 className="font-bold text-emerald-400">Optimization Complete</h3>
         </div>
         <div className="flex items-center gap-3 text-sm">
@@ -41,12 +42,12 @@ export function ResultBanner({ workflow }: Props) {
 
       <div>
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-xs font-medium text-gray-400">Best Prompt</span>
+          <span className="text-xs font-medium text-gray-400">Best Output</span>
           <button
             onClick={handleCopy}
-            className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors"
+            className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1"
           >
-            {copied ? "\u2713 Copied!" : "Copy"}
+            {copied ? <><Check className="w-3 h-3" /> Copied!</> : "Copy"}
           </button>
         </div>
         <pre className="text-sm bg-gray-950 border border-gray-800 rounded-lg p-4 whitespace-pre-wrap text-gray-200 max-h-60 overflow-y-auto">

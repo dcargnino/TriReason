@@ -1,0 +1,18 @@
+{
+  "type": "refined",
+  "iteration": 2,
+  "input": {
+    "data": "",
+    "objective": "scrivi una poesia in rima baciata",
+    "refined_prompt": "Sei un poeta classico esperto in metrica italiana. Scrivi una poesia di esattamente 8 versi endecasillabi in rima baciata (AABBCCDD), con linguaggio elegante ma accessibile, su un tema universale come la luce del mattino, il silenzio prima dell\u2019alba, o il primo pensiero al risveglio. Usa esclusivamente rime perfette (identit\u00e0 fonica completa tra ultime due sillabe accentate, es. 'piede/siede', 'luce/duce', 'alba/parla'), evitando assonanze o rime imperfette. Evita rime forzate, clich\u00e9 e termini troppo tecnici. La poesia deve essere autonoma, compiuta e trasmettere una sensazione di quiete contemplativa. Restituisci esclusivamente il testo della poesia, senza titolo, note o spiegazioni.",
+    "critic_issues": [
+      "La poesia \u00e8 composta da due quartine (8 versi totali), ma non \u00e8 specificato se l'obiettivo richieda una lunghezza minima o un numero standard di versi per una 'poesia in rima baciata'; questa ambiguit\u00e0 potrebbe generare incertezza sull'adeguatezza strutturale",
+      "L'uso della rima baciata \u00e8 corretto, ma la seconda quartina presenta rime 'piede/crede' che, pur essendo foneticamente accettabili in italiano moderno, rischiano di essere percepite come assonanze piuttosto che rime perfette da lettori sensibili alla metrica tradizionale"
+    ],
+    "constraints": null
+  },
+  "output": {
+    "candidate_prompt": "Sei un poeta classico specializzato in metrica italiana e rime tradizionali. Scrivi una poesia di esattamente 14 versi endecasillabi in rima baciata (AABBCCDDEEFFGG), strutturata come un sonetto completo ma senza distinzione tra ottava e sestina \u2014 quindi una sequenza continua di sette coppie di rime baciata. Il tema \u00e8 il silenzio prima dell\u2019alba: evoca immobilit\u00e0, attesa, luce incipiente e coscienza che si risveglia con delicatezza. Usa esclusivamente rime perfette: identit\u00e0 fonica completa nelle ultime due sillabe accentate (es. 'stella/bella', 'vento/argento', 'soglia/voglia'), verificate secondo la pronuncia toscana standard e le regole della metrica accademica (no assonanze, no rime tronche o piane miste, no rime storpiate come 'piede/crede'). Evita ogni clich\u00e9 ('occhi del cielo', 'velo di nebbia'), termini tecnici, aggettivi vuoti ('bello', 'grande') e forzature semantiche. La poesia deve essere autonoma, compiuta e trasmettere quiete contemplativa attraverso immagini precise e ritmo misurato. Restituisci esclusivamente il testo della poesia, senza titolo, note, spiegazioni o interruzioni.",
+    "candidate_output": "Il mondo ancora dorme, muto e fermo,\nun respiro sospeso nell\u2019aria chiara;\nla notte cede al giorno con calma, vero,\ne il cielo tinge d\u2019oro la sua bara.\n\nNon un uccello incrina il silenzio antico,\nnon un ramo trema sotto il vento lieve;\nla luce affiora, timida, sul nubico\norlo del monte, pallida e riceve.\n\nI miei pensieri scendono, leggeri,\ncome brina su vetri addormentati;\nnon sono domande, non sono guerrieri,\nma semplici presenze, disincantati.\n\nE mentre l\u2019ombra arretra, lenta e pura,\nla soglia del nuovo si fa sicura."
+  }
+}

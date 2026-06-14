@@ -1,0 +1,37 @@
+{
+  "iteration": 2,
+  "input": {
+    "current_system_message": "Sei un poeta classico specializzato in metrica italiana e rime tradizionali. Scrivi una poesia di esattamente 14 versi endecasillabi in rima baciata (AABBCCDDEEFFGG), strutturata come un sonetto completo ma senza distinzione tra ottava e sestina \u2014 quindi una sequenza continua di sette coppie di rime baciata. Il tema \u00e8 il silenzio prima dell\u2019alba: evoca immobilit\u00e0, attesa, luce incipiente e coscienza che si risveglia con delicatezza. Usa esclusivamente rime perfette: identit\u00e0 fonica completa nelle ultime due sillabe accentate (es. 'stella/bella', 'vento/argento', 'soglia/voglia'), verificate secondo la pronuncia toscana standard e le regole della metrica accademica (no assonanze, no rime tronche o piane miste, no rime storpiate come 'piede/crede'). Evita ogni clich\u00e9 ('occhi del cielo', 'velo di nebbia'), termini tecnici, aggettivi vuoti ('bello', 'grande') e forzature semantiche. La poesia deve essere autonoma, compiuta e trasmettere quiete contemplativa attraverso immagini precise e ritmo misurato. Restituisci esclusivamente il testo della poesia, senza titolo, note, spiegazioni o interruzioni.",
+    "objective": "scrivi una poesia in rima baciata",
+    "data": "",
+    "critic_feedback": {
+      "score_total": 92.5,
+      "score_breakdown": {
+        "objective_fulfillment": 100.0,
+        "correctness_faithfulness": 95.0,
+        "completeness": 90.0,
+        "format_compliance": 90.0,
+        "clarity_usability": 90.0
+      },
+      "issues": [
+        "La rima baciata \u00e8 rispettata nella maggior parte dei versi, ma nel terzultimo distico 'leggeri' e 'guerrieri' non costituiscono una rima baciata (sono assonanze, non rime consonantiche complete); 'addormentati' e 'disincantati' formano una rima baciata, ma il verso precedente 'scendono, leggeri' non rima con 'non sono domande' \u2014 quindi il distico 9\u201310 \u00e8 irregolare: 'leggeri' / 'domande' non rima, rompendo la struttura ABAB...XX della rima baciata"
+      ],
+      "recommendations": [
+        "Correggere il distico 9\u201310 sostituendo i versi per ripristinare la rima baciata: ad esempio, sostituire 'Non sono domande, non sono guerrieri,' con 'Non chiedono risposta, non son guerrieri,' per rima con 'leggeri'; oppure riformulare il verso 9 per rima con 'guerrieri' (es. 'I miei pensieri volano, leggeri,').",
+        "Verificare ogni coppia di versi consecutivi (1\u20132, 3\u20134, ..., 11\u201312) per assicurare rima consonantica completa (stessa sillaba finale accentata + stesse consonanti successive), non solo assonanza o rima ricca \u2014 in particolare controllare 'antico'/'lieve', 'nubico'/'riceve', 'pallida'/'riceve' che mostrano debolezze foniche."
+      ]
+    },
+    "quality_threshold": 85
+  },
+  "output": {
+    "refined_prompt": "Sei un poeta classico specializzato in metrica italiana e rime tradizionali. Scrivi una poesia di esattamente 14 versi endecasillabi in rima baciata rigorosa (AABBCCDDEEFFGG), cio\u00e8 sette coppie consecutive di versi che rimmanno tra loro con rime consonantiche perfette: identit\u00e0 fonica completa dalla sillaba accentata in poi, secondo la pronuncia toscana standard e le regole accademiche della metrica italiana (es. 'stella/bella', 'vento/argento'). Assolutamente vietate: assonanze, rime tronche/piane miste, rime storpiate ('piede/crede'), rime ricche non consonantiche. Verifica ogni distico (versi 1\u20132, 3\u20134, ..., 13\u201314) per garantire corrispondenza fonica totale \u2014 niente eccezioni. Il tema \u00e8 il silenzio prima dell\u2019alba: evoca immobilit\u00e0, attesa, luce incipiente e coscienza che si risveglia con delicatezza. Usa esclusivamente immagini precise e concrete; evita clich\u00e9 ('occhi del cielo', 'velo di nebbia'), termini tecnici, aggettivi vuoti ('bello', 'grande') e forzature semantiche. La poesia deve essere autonoma, compiuta e trasmettere quiete contemplativa attraverso ritmo misurato e linguaggio essenziale. Restituisci esclusivamente il testo della poesia, senza titolo, note, spiegazioni o interruzioni.",
+    "changes_made": [
+      "Aggiunta specifica esplicita sulla necessit\u00e0 di rime consonantiche perfette (non solo assonanze o rime ricche)",
+      "Chiarimento obbligatorio di verifica manuale di ogni distico (1-2, 3-4, ..., 13-14) per corrispondenza fonica totale",
+      "Rinforzo del divieto assoluto di rime imperfette con esempi espliciti e indicazione di conseguenze metriche",
+      "Rimozione di ambiguit\u00e0 residua su 'rima baciata' sostituendola con 'rima baciata rigorosa' e definizione operativa precisa"
+    ],
+    "action": "continue",
+    "reason": "Il punteggio totale (92.5) supera la soglia richiesta (85), ma il Critic ha identificato un problema critico di fedelt\u00e0 metrica (rima imperfetta nel distico 9\u201310 e debolezze foniche in altri distici) che compromette la correctness_faithfulness (95.0 \u2192 potenzialmente <90 se non corretto) e la format_compliance. Poich\u00e9 l'obiettivo richiede rigorosa adesione alla rima baciata perfetta \u2014 non semplicemente 'baciata in senso lato' \u2014 il sistema message deve prevenire tali errori a monte con istruzioni pi\u00f9 stringenti e verificabili."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "iteration": 1,
+  "input": {
+    "data": "",
+    "objective": "scrivi una poesia in rima baciata",
+    "candidate_output": "Il cielo ancora velato di azzurro pallido,\nscivola dolce il tempo senza voce;\nil mondo \u00e8 un respiro lento e tranquillo,\nun sogno che si scioglie senza croce.\n\nUna luce timida sfiora i tetti,\nle ombre si ritirano in punta di piede;\nnon c\u2019\u00e8 bisogno di parole perfette,\nsolo presenza \u2014 e l\u2019anima crede."
+  },
+  "output": {
+    "score_total": 94.5,
+    "score_breakdown": {
+      "objective_fulfillment": 100.0,
+      "correctness_faithfulness": 100.0,
+      "completeness": 90.0,
+      "format_compliance": 90.0,
+      "clarity_usability": 95.0
+    },
+    "issues": [
+      "La poesia \u00e8 composta da due quartine (8 versi totali), ma non \u00e8 specificato se l'obiettivo richieda una lunghezza minima o un numero standard di versi per una 'poesia in rima baciata'; questa ambiguit\u00e0 potrebbe generare incertezza sull'adeguatezza strutturale",
+      "L'uso della rima baciata \u00e8 corretto, ma la seconda quartina presenta rime 'piede/crede' che, pur essendo foneticamente accettabili in italiano moderno, rischiano di essere percepite come assonanze piuttosto che rime perfette da lettori sensibili alla metrica tradizionale"
+    ],
+    "recommendations": [
+      "Esplicitare nella richiesta (o nel contesto) la lunghezza desiderata (es. 'minimo 12 versi' o 'una strofa di 8 versi') per evitare ambiguit\u00e0 interpretativa",
+      "Sostituire 'piede/crede' con rime perfette foneticamente pi\u00f9 robuste (es. 'piede/riede', 'piede/siede') mantenendo il senso e il registro contemplativo"
+    ]
+  }
+}

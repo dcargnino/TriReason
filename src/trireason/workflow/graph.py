@@ -58,6 +58,7 @@ async def generate_node(state: TriReasonState) -> dict[str, Any]:
             data=state["data"],
             objective=state["objective"],
             constraints=state.get("constraints"),
+            iteration=iteration,
         )
     else:
         critic: dict[str, Any] = state["critic_result"]
@@ -67,6 +68,7 @@ async def generate_node(state: TriReasonState) -> dict[str, Any]:
             refined_prompt=state["candidate_prompt"],
             critic_issues=critic.get("issues", []),
             constraints=state.get("constraints"),
+            iteration=iteration,
         )
 
     return {
@@ -78,14 +80,14 @@ async def generate_node(state: TriReasonState) -> dict[str, Any]:
 
 async def critique_node(state: TriReasonState) -> dict[str, Any]:
     """Run the Critic agent and update best-tracking."""
-    logger.info("Iteration %d – critiquing output", state["iteration"])
+    iteration = state.get("iteration", 1)
+    logger.info("Iteration %d – critiquing output", iteration)
 
     result: CriticOutput = await critique(
         data=state["data"],
         objective=state["objective"],
-        candidate_prompt=state["candidate_prompt"],
         candidate_output=state["candidate_output"],
-        threshold=state["score_threshold"],
+        iteration=iteration,
     )
 
     best_score = state.get("best_score", 0.0)
@@ -102,13 +104,16 @@ async def critique_node(state: TriReasonState) -> dict[str, Any]:
     else:
         no_improvement_count += 1
 
+    score_threshold = state.get("score_threshold", 85)
+    passed = result.score_total >= score_threshold
+
     iteration_record = IterationResponse(
         iteration_number=state["iteration"],
         candidate_prompt=state["candidate_prompt"],
         candidate_output=state["candidate_output"],
         score_total=result.score_total,
         score_breakdown=result.score_breakdown,
-        passed=result.passed,
+        passed=passed,
         issues=result.issues,
         recommendations=result.recommendations,
         is_best_so_far=is_best,
@@ -117,41 +122,52 @@ async def critique_node(state: TriReasonState) -> dict[str, Any]:
     iterations_log = list(state.get("iterations_log", []))
     iterations_log.append(iteration_record.model_dump())
 
-    # Determine stop reason
-    stop_reason: str | None = None
-    if result.passed:
-        stop_reason = "threshold_reached"
-    elif state["iteration"] >= state["max_iterations"]:
-        stop_reason = "max_iterations_reached"
-    elif no_improvement_count >= 3:
-        stop_reason = "no_improvement"
-
     return {
         "critic_result": result.model_dump(),
         "best_score": best_score,
         "best_prompt": best_prompt,
         "best_iteration": best_iteration,
         "iterations_log": iterations_log,
-        "stop_reason": stop_reason,
         "no_improvement_count": no_improvement_count,
     }
 
 
 async def refine_node(state: TriReasonState) -> dict[str, Any]:
-    """Run the Refiner agent."""
-    logger.info("Iteration %d – refining prompt", state["iteration"])
+    """Run the Refiner agent and decide whether to continue or stop."""
+    iteration = state.get("iteration", 1)
+    logger.info("Iteration %d – refining prompt", iteration)
     critic: dict[str, Any] = state["critic_result"]
 
     result = await refine(
-        current_prompt=state["candidate_prompt"],
+        current_system_message=state["candidate_prompt"],
         objective=state["objective"],
-        issues=critic.get("issues", []),
-        recommendations=critic.get("recommendations", []),
-        score_total=critic.get("score_total", 0),
+        data=state["data"],
+        critic_feedback=critic,
+        quality_threshold=state.get("score_threshold", 85),
+        iteration=iteration,
     )
+
+    # Refiner decides action
+    action = result.action
+    stop_reason: str | None = None
+    
+    if action == "stop":
+        stop_reason = result.reason
+    elif state.get("iteration", 0) >= state.get("max_iterations", 5):
+        stop_reason = "max_iterations_reached"
+
+    # Update the last iteration in the log with refiner info
+    iterations_log = list(state.get("iterations_log", []))
+    if iterations_log:
+        last = iterations_log[-1]
+        last["refiner_action"] = action
+        last["refiner_reason"] = result.reason
+        last["changes_made"] = result.changes_made
 
     return {
         "candidate_prompt": result.refined_prompt,
+        "stop_reason": stop_reason,
+        "iterations_log": iterations_log,
     }
 
 
@@ -159,10 +175,10 @@ async def refine_node(state: TriReasonState) -> dict[str, Any]:
 
 
 def should_continue(state: TriReasonState) -> str:
-    """Decide whether to refine or stop."""
+    """Decide whether to generate again or stop based on Refiner's decision."""
     if state.get("stop_reason") is not None:
         return "end"
-    return "refine"
+    return "generate"
 
 
 # ── Build the graph ────────────────────────────────────────────────
@@ -178,8 +194,8 @@ def build_graph() -> StateGraph:
 
     graph.set_entry_point("generate")
     graph.add_edge("generate", "critique")
-    graph.add_conditional_edges("critique", should_continue, {"refine": "refine", "end": END})
-    graph.add_edge("refine", "generate")
+    graph.add_edge("critique", "refine")
+    graph.add_conditional_edges("refine", should_continue, {"generate": "generate", "end": END})
 
     return graph.compile()
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 import type { IterationResult } from "../types/api";
 import { ScoreBar } from "./ScoreBar";
 
@@ -57,7 +58,7 @@ export function IterationPanel({ iterations }: Props) {
                   </span>
                 )}
               </div>
-              <span className="text-gray-600 text-xs">{isExpanded ? "\u25B2" : "\u25BC"}</span>
+              <span className="text-gray-600 text-xs">{isExpanded ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}</span>
             </button>
 
             {/* Expanded detail */}
@@ -127,6 +128,35 @@ export function IterationPanel({ iterations }: Props) {
                         <li key={i}>{rec}</li>
                       ))}
                     </ul>
+                  </div>
+                )}
+
+                {/* Refiner info */}
+                {it.refiner_action && (
+                  <div className="pt-2 border-t border-gray-800">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xs font-medium text-gray-400">Refiner Decision:</span>
+                      <span className={`text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded ${
+                        it.refiner_action === "stop"
+                          ? "bg-emerald-900/60 text-emerald-400"
+                          : "bg-blue-900/60 text-blue-400"
+                      }`}>
+                        {it.refiner_action}
+                      </span>
+                    </div>
+                    {it.refiner_reason && (
+                      <p className="text-xs text-gray-400 italic">{it.refiner_reason}</p>
+                    )}
+                    {it.changes_made && it.changes_made.length > 0 && (
+                      <div className="mt-2">
+                        <div className="text-xs font-medium text-indigo-400 mb-1">Changes Made</div>
+                        <ul className="text-xs text-gray-400 space-y-0.5 list-disc list-inside">
+                          {it.changes_made.map((change, i) => (
+                            <li key={i}>{change}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

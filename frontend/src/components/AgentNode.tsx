@@ -1,4 +1,5 @@
 import { Handle, Position, type NodeProps, type Node } from "@xyflow/react";
+import { Check, ClipboardList, Brain, Search, Sparkles, Trophy } from "lucide-react";
 import type { AgentStatus } from "../types/api";
 
 export type AgentNodeData = {
@@ -24,8 +25,17 @@ const STATUS_BADGE: Record<AgentStatus, { text: string; color: string }> = {
   error: { text: "Error", color: "text-red-400" },
 };
 
+const ICON_MAP: Record<string, React.ReactNode> = {
+  clipboard: <ClipboardList className="w-6 h-6" />,
+  brain: <Brain className="w-6 h-6" />,
+  search: <Search className="w-6 h-6" />,
+  sparkles: <Sparkles className="w-6 h-6" />,
+  trophy: <Trophy className="w-6 h-6" />,
+};
+
 export function AgentNode({ data }: NodeProps<AgentNode>) {
   const badge = STATUS_BADGE[data.status];
+  const Icon = ICON_MAP[data.icon];
 
   return (
     <div
@@ -34,7 +44,7 @@ export function AgentNode({ data }: NodeProps<AgentNode>) {
       <Handle type="target" position={Position.Left} className="!bg-gray-500" />
 
       <div className="flex items-center gap-3 mb-2">
-        <span className="text-2xl">{data.icon}</span>
+        <span className="text-indigo-400">{Icon}</span>
         <div>
           <div className="font-bold text-sm text-gray-100">{data.label}</div>
           <div className="text-xs text-gray-400">{data.role}</div>
@@ -45,7 +55,7 @@ export function AgentNode({ data }: NodeProps<AgentNode>) {
         {data.status === "active" && (
           <span className="inline-block w-2 h-2 rounded-full bg-indigo-400 animate-spin-slow" />
         )}
-        {data.status === "done" && <span>&#10003;</span>}
+        {data.status === "done" && <Check className="w-3 h-3" />}
         {badge.text}
       </div>
 

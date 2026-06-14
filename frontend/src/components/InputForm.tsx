@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronUp, ChevronDown, Loader2 } from "lucide-react";
 import type { OptimizationRequest, WorkflowState } from "../types/api";
 
 interface Props {
@@ -18,7 +19,7 @@ export function InputForm({ onSubmit, onReset, workflow }: Props) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!data.trim() || !objective.trim()) return;
+    if (!objective.trim()) return;
     onSubmit({
       data: data.trim(),
       objective: objective.trim(),
@@ -60,9 +61,9 @@ export function InputForm({ onSubmit, onReset, workflow }: Props) {
       <button
         type="button"
         onClick={() => setShowAdvanced(!showAdvanced)}
-        className="text-xs text-gray-500 hover:text-gray-300 text-left transition-colors w-fit"
+        className="text-xs text-gray-500 hover:text-gray-300 text-left transition-colors w-fit flex items-center gap-1"
       >
-        {showAdvanced ? "\u25B2" : "\u25BC"} Advanced settings
+        {showAdvanced ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />} Advanced settings
       </button>
 
       {showAdvanced && (
@@ -101,16 +102,16 @@ export function InputForm({ onSubmit, onReset, workflow }: Props) {
       <div className="flex gap-2 pt-1">
         <button
           type="submit"
-          disabled={isRunning || !data.trim() || !objective.trim()}
+          disabled={isRunning || !objective.trim()}
           className="flex-1 rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
         >
           {isRunning ? (
             <span className="flex items-center justify-center gap-2">
-              <span className="inline-block w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin-slow" />
+              <Loader2 className="w-4 h-4 animate-spin" />
               Optimizing...
             </span>
           ) : (
-            "Optimize Prompt"
+            "Execute"
           )}
         </button>
 

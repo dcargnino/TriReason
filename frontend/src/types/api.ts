@@ -16,6 +16,9 @@ export interface IterationResult {
   issues: string[];
   recommendations: string[];
   is_best_so_far: boolean;
+  refiner_action?: "stop" | "continue";
+  refiner_reason?: string;
+  changes_made?: string[];
 }
 
 export interface OptimizationRequest {

@@ -1,4 +1,4 @@
-"""Shared LLM client for all agents."""
+# Shared LLM client for all agents.
 
 from openai import AsyncOpenAI
 
@@ -11,7 +11,10 @@ def get_openai_client() -> AsyncOpenAI:
     """Return a singleton AsyncOpenAI client."""
     global _client
     if _client is None:
-        _client = AsyncOpenAI(api_key=settings.openai_api_key)
+        kwargs = {"api_key": settings.openai_api_key}
+        if settings.openai_base_url:
+            kwargs["base_url"] = settings.openai_base_url
+        _client = AsyncOpenAI(**kwargs)
     return _client
 
 

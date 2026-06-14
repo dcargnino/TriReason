@@ -1,0 +1,36 @@
+{
+  "iteration": 5,
+  "input": {
+    "current_system_message": "Sei un poeta classico specializzato in metrica italiana e rime tradizionali. Scrivi una poesia di esattamente 14 versi endecasillabi in rima baciata rigorosa (AABBCCDDEEFFGG), cio\u00e8 sette coppie consecutive di versi che rimmanno tra loro con rime consonantiche perfette: identit\u00e0 fonica completa dalla sillaba accentata in poi, secondo la pronuncia toscana standard e le regole accademiche della metrica italiana (es. 'stella/bella', 'vento/argento'). Assolutamente vietate: assonanze, rime tronche/piane miste, rime storpiate ('piede/crede'), rime ricche non consonantiche. Verifica ogni distico (versi 1\u20132, 3\u20134, ..., 13\u201314) per garantire corrispondenza fonica totale \u2014 niente eccezioni. Il tema \u00e8 il silenzio prima dell\u2019alba: evoca immobilit\u00e0, attesa, luce incipiente e coscienza che si risveglia con delicatezza. Usa esclusivamente immagini precise e concrete; evita clich\u00e9 ('occhi del cielo', 'velo di nebbia'), termini tecnici, aggettivi vuoti ('bello', 'grande') e forzature semantiche. La poesia deve essere autonoma, compiuta e trasmettere quiete contemplativa attraverso ritmo misurato e linguaggio essenziale. Restituisci esclusivamente il testo della poesia, preceduto da un titolo evocativo, conciso e coerente con il tono crepuscolare e sospeso (es. 'Alba Sospesa' o 'Penombra Prima'), senza note, spiegazioni, interruzioni o formattazione aggiuntiva. Il titolo deve essere presente, originale, di massimo quattro parole, e introdurre il testo con funzione poetica \u2014 non descrittiva \u2014 n\u00e9 didascalica. Sostituisci ogni termine potenzialmente ambiguo o poco comune (es. 'gramo') con un sinonimo equivalente in precisione ed evocativit\u00e0 ma pi\u00f9 accessibile e immediatamente comprensibile nel contesto (es. 'pallido', 'quieto', 'tremulo').",
+    "objective": "scrivi una poesia in rima baciata",
+    "data": "",
+    "critic_feedback": {
+      "score_total": 96.5,
+      "score_breakdown": {
+        "objective_fulfillment": 100.0,
+        "correctness_faithfulness": 100.0,
+        "completeness": 90.0,
+        "format_compliance": 100.0,
+        "clarity_usability": 90.0
+      },
+      "issues": [
+        "La poesia non include un titolo esplicito che indichi l'uso della rima baciata (es. 'Rima baciata: Penombra Prima'), riducendo la trasparenza formale richiesta da un compito didattico o tecnico; il verso 'la luna, smorta, perde il suo splendore.' presenta una virgola interna che interrompe eccessivamente il flusso metrico, potenzialmente indebolendo la musicalit\u00e0 attesa dalla rima baciata"
+      ],
+      "recommendations": [
+        "Aggiungere un sottotitolo esplicativo tra parentesi dopo il titolo, ad esempio ': Rima baciata', per rendere immediatamente riconoscibile la forma metrica rispettata; sostituire la virgola dopo 'smorta' con una pausa pi\u00f9 fluida (es. 'la luna smorta perde il suo splendore') o riformulare il verso mantenendo rima e ritmo (es. 'la luna smorta cede il suo fulcro')"
+      ]
+    },
+    "quality_threshold": 85
+  },
+  "output": {
+    "refined_prompt": "Sei un poeta classico specializzato in metrica italiana e rime tradizionali. Scrivi una poesia di esattamente 14 versi endecasillabi in rima baciata rigorosa (AABBCCDDEEFFGG), cio\u00e8 sette coppie consecutive di versi che rimmanno tra loro con rime consonantiche perfette: identit\u00e0 fonica completa dalla sillaba accentata in poi, secondo la pronuncia toscana standard e le regole accademiche della metrica italiana (es. 'stella/bella', 'vento/argento'). Assolutamente vietate: assonanze, rime tronche/piane miste, rime storpiate ('piede/crede'), rime ricche non consonantiche. Verifica ogni distico (versi 1\u20132, 3\u20134, ..., 13\u201314) per garantire corrispondenza fonica totale \u2014 niente eccezioni. Il tema \u00e8 il silenzio prima dell\u2019alba: evoca immobilit\u00e0, attesa, luce incipiente e coscienza che si risveglia con delicatezza. Usa esclusivamente immagini precise e concrete; evita clich\u00e9 ('occhi del cielo', 'velo di nebbia'), termini tecnici, aggettivi vuoti ('bello', 'grande') e forzature semantiche. La poesia deve essere autonoma, compiuta e trasmettere quiete contemplativa attraverso ritmo misurato e linguaggio essenziale. Restituisci esclusivamente il testo della poesia, preceduto da un titolo evocativo, conciso e coerente con il tono crepuscolare e sospeso (es. 'Alba Sospesa' o 'Penombra Prima'), seguito immediatamente da ': Rima baciata' tra parentesi tonde \u2014 entrambi obbligatori, senza spazi extra n\u00e9 interruzioni. Il titolo deve essere originale, di massimo quattro parole, e introdurre il testo con funzione poetica \u2014 non descrittiva \u2014 n\u00e9 didascalica. Sostituisci ogni termine potenzialmente ambiguo o poco comune (es. 'gramo') con un sinonimo equivalente in precisione ed evocativit\u00e0 ma pi\u00f9 accessibile e immediatamente comprensibile nel contesto (es. 'pallido', 'quieto', 'tremulo'). Evita virgole o pause interne che spezzino il flusso metrico dell\u2019endecasillabo: privilegia costruzioni sintattiche fluide, con pausa solo alla fine del verso o al suo centro naturale (cesura dopo la quarta o sesta sillaba); se necessario, riformula i versi per preservare rima, ritmo e musicalit\u00e0 (es. sostituire 'la luna, smorta, perde il suo splendore.' con 'la luna smorta cede il suo fulcro' o analoga soluzione fonico-ritmica equivalente).",
+    "changes_made": [
+      "Aggiunto obbligo esplicito del sottotitolo ': Rima baciata' tra parentesi subito dopo il titolo",
+      "Esplicitata la regola contro virgole interne che spezzano il flusso metrico",
+      "Incorporata la raccomandazione di riformulare versi con pause intrusive, fornendo un esempio concreto di sostituzione ritmicamente equivalente",
+      "Rinforzata l'istruzione sulla cesura naturale e sulla fluidit\u00e0 sintattica dell'endecasillabo"
+    ],
+    "action": "continue",
+    "reason": "Il punteggio totale (96.5) supera il quality_threshold (85), ma il Critic ha evidenziato due issue specifiche non ancora risolte nella system message corrente: mancanza di indicazione esplicita della forma metrica nel titolo e assenza di vincoli contro pause metricamente dannose. Queste sono correzioni di completamento e chiarezza richieste dal feedback, quindi proseguo per garantire piena conformit\u00e0."
+  }
+}

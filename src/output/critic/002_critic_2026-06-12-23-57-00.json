@@ -1,0 +1,25 @@
+{
+  "iteration": 2,
+  "input": {
+    "data": "",
+    "objective": "scrivi una poesia in rima baciata",
+    "candidate_output": "Il mondo ancora dorme, muto e fermo,\nun respiro sospeso nell\u2019aria chiara;\nla notte cede al giorno con calma, vero,\ne il cielo tinge d\u2019oro la sua bara.\n\nNon un uccello incrina il silenzio antico,\nnon un ramo trema sotto il vento lieve;\nla luce affiora, timida, sul nubico\norlo del monte, pallida e riceve.\n\nI miei pensieri scendono, leggeri,\ncome brina su vetri addormentati;\nnon sono domande, non sono guerrieri,\nma semplici presenze, disincantati.\n\nE mentre l\u2019ombra arretra, lenta e pura,\nla soglia del nuovo si fa sicura."
+  },
+  "output": {
+    "score_total": 92.5,
+    "score_breakdown": {
+      "objective_fulfillment": 100.0,
+      "correctness_faithfulness": 95.0,
+      "completeness": 90.0,
+      "format_compliance": 90.0,
+      "clarity_usability": 90.0
+    },
+    "issues": [
+      "La rima baciata \u00e8 rispettata nella maggior parte dei versi, ma nel terzultimo distico 'leggeri' e 'guerrieri' non costituiscono una rima baciata (sono assonanze, non rime consonantiche complete); 'addormentati' e 'disincantati' formano una rima baciata, ma il verso precedente 'scendono, leggeri' non rima con 'non sono domande' \u2014 quindi il distico 9\u201310 \u00e8 irregolare: 'leggeri' / 'domande' non rima, rompendo la struttura ABAB...XX della rima baciata"
+    ],
+    "recommendations": [
+      "Correggere il distico 9\u201310 sostituendo i versi per ripristinare la rima baciata: ad esempio, sostituire 'Non sono domande, non sono guerrieri,' con 'Non chiedono risposta, non son guerrieri,' per rima con 'leggeri'; oppure riformulare il verso 9 per rima con 'guerrieri' (es. 'I miei pensieri volano, leggeri,').",
+      "Verificare ogni coppia di versi consecutivi (1\u20132, 3\u20134, ..., 11\u201312) per assicurare rima consonantica completa (stessa sillaba finale accentata + stesse consonanti successive), non solo assonanza o rima ricca \u2014 in particolare controllare 'antico'/'lieve', 'nubico'/'riceve', 'pallida'/'riceve' che mostrano debolezze foniche."
+    ]
+  }
+}

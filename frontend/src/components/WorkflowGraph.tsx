@@ -24,56 +24,56 @@ function buildNodes(workflow: WorkflowState): Node<AgentNodeData>[] {
     {
       id: "user",
       type: "agent",
-      position: { x: 0, y: 140 },
+      position: { x: 0, y: 200 },
       data: {
         label: "User Input",
         role: "Data + Objective",
         status: workflow.phase === "idle" ? "idle" : "done",
-        icon: "\u{1F4CB}",
+        icon: "clipboard",
       },
     },
     {
       id: "generator",
       type: "agent",
-      position: { x: 280, y: 50 },
+      position: { x: 260, y: 200 },
       data: {
         label: "Generator",
         role: "Prompt Designer",
         status: workflow.generator,
-        icon: "\u{1F9E0}",
+        icon: "brain",
       },
     },
     {
       id: "critic",
       type: "agent",
-      position: { x: 560, y: 50 },
+      position: { x: 520, y: 100 },
       data: {
         label: "Critic",
         role: "Output Validator",
         status: workflow.critic,
-        icon: "\u{1F50D}",
+        icon: "search",
       },
     },
     {
       id: "refiner",
       type: "agent",
-      position: { x: 420, y: 250 },
+      position: { x: 520, y: 300 },
       data: {
         label: "Refiner",
         role: "Prompt Optimizer",
         status: workflow.refiner,
-        icon: "\u{2728}",
+        icon: "sparkles",
       },
     },
     {
       id: "result",
       type: "agent",
-      position: { x: 840, y: 140 },
+      position: { x: 780, y: 200 },
       data: {
-        label: "Best Prompt",
+        label: "Best Output",
         role: workflow.bestScore != null ? `Score: ${workflow.bestScore.toFixed(1)}` : "Waiting...",
         status: workflow.phase === "complete" ? "done" : "idle",
-        icon: "\u{1F3C6}",
+        icon: "trophy",
       },
     },
   ];
@@ -85,13 +85,14 @@ function buildEdges(workflow: WorkflowState): Edge[] {
   const idleColor = "#374151";
 
   function edgeColor(source: string): string {
-    if (workflow.phase === "complete") return doneColor;
+    const isComplete = workflow.phase === "complete";
+    if (isComplete) return doneColor;
     if (source === "user" && workflow.phase !== "idle") return doneColor;
     if (source === "generator" && (workflow.critic !== "idle" || workflow.refiner !== "idle"))
       return doneColor;
     if (source === "generator" && workflow.generator === "active") return activeColor;
     if (source === "critic" && workflow.refiner === "active") return activeColor;
-    if (source === "critic" && workflow.phase === "complete") return doneColor;
+    if (source === "critic" && isComplete) return doneColor;
     if (source === "refiner" && workflow.generator === "active" && workflow.currentIteration > 0)
       return activeColor;
     return idleColor;
@@ -126,8 +127,6 @@ function buildEdges(workflow: WorkflowState): Edge[] {
       ...base,
       style: { ...base.style, stroke: edgeColor("critic") },
       animated: workflow.refiner === "active",
-      label: workflow.refiner === "active" ? "FAIL" : "",
-      labelStyle: { fill: "#ef4444", fontWeight: 700, fontSize: 11 },
     },
     {
       id: "e-ref-gen",
@@ -135,19 +134,15 @@ function buildEdges(workflow: WorkflowState): Edge[] {
       target: "generator",
       ...base,
       style: { ...base.style, stroke: edgeColor("refiner") },
-      animated: workflow.generator === "active" && workflow.currentIteration > 0,
-      label: workflow.currentIteration > 0 ? `Iter ${workflow.currentIteration + 1}` : "",
-      labelStyle: { fill: "#a78bfa", fontWeight: 600, fontSize: 10 },
+      animated: workflow.phase === "refining" || (workflow.generator === "active" && workflow.currentIteration > 0),
     },
     {
-      id: "e-crit-result",
-      source: "critic",
+      id: "e-ref-result",
+      source: "refiner",
       target: "result",
       ...base,
       style: { ...base.style, stroke: workflow.phase === "complete" ? doneColor : idleColor },
       animated: false,
-      label: workflow.phase === "complete" ? "PASS" : "",
-      labelStyle: { fill: "#10b981", fontWeight: 700, fontSize: 11 },
     },
   ];
 }

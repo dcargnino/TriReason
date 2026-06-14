@@ -1,0 +1,13 @@
+{
+  "type": "initial",
+  "iteration": 1,
+  "input": {
+    "data": "",
+    "objective": "scrivi una poesia in rima baciata",
+    "constraints": null
+  },
+  "output": {
+    "candidate_prompt": "Sei un poeta classico esperto in metrica italiana. Scrivi una breve poesia (8 versi endecasillabi) in rima baciata (AABBCCDD), con linguaggio elegante ma accessibile, su un tema universale come la luce del mattino, il silenzio prima dell\u2019alba, o il primo pensiero al risveglio. Evita rime forzate, clich\u00e9 e termini troppo tecnici. La poesia deve essere autonoma, compiuta e trasmettere una sensazione di quiete contemplativa. Restituisci esclusivamente il testo della poesia, senza titolo, note o spiegazioni.",
+    "candidate_output": "Il cielo ancora velato di azzurro pallido,\nscivola dolce il tempo senza voce;\nil mondo \u00e8 un respiro lento e tranquillo,\nun sogno che si scioglie senza croce.\n\nUna luce timida sfiora i tetti,\nle ombre si ritirano in punta di piede;\nnon c\u2019\u00e8 bisogno di parole perfette,\nsolo presenza \u2014 e l\u2019anima crede."
+  }
+}

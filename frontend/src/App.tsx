@@ -1,4 +1,6 @@
 import { ReactFlowProvider } from "@xyflow/react";
+import { FlaskConical } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useOptimization } from "./hooks/useOptimization";
 import { InputForm } from "./components/InputForm";
 import { WorkflowGraph } from "./components/WorkflowGraph";
@@ -15,7 +17,7 @@ export default function App() {
         {/* Top bar */}
         <header className="border-b border-gray-800 px-6 py-3 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-2.5">
-            <span className="text-xl">{"\u{1F52C}"}</span>
+            <FlaskConical className="w-5 h-5 text-indigo-500" />
             <h1 className="text-lg font-bold tracking-tight text-gray-100">
               TriReason
             </h1>
@@ -28,6 +30,12 @@ export default function App() {
               {workflow.runId}
             </span>
           )}
+          <Link
+            to="/prompts"
+            className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors ml-4"
+          >
+            View Agent Prompts
+          </Link>
         </header>
 
         {/* Main layout */}

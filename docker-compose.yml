@@ -28,7 +28,7 @@ services:
       POSTGRES_PASSWORD: trireason
       POSTGRES_DB: trireason
     ports:
-      - "5432:5432"
+      - "${POSTGRES_HOST_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
